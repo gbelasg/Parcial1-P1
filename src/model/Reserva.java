@@ -51,15 +51,12 @@ public class Reserva {
 
     // Un codigo es capicua si al invertirlo queda el mismo numero
     public boolean esCapicua() {
-        int original = codigo;
-        int invertido = 0;
-        int aux = codigo;
-        while (aux > 0) {
-            int digito = aux % 10;
-            invertido = invertido * 10 + digito;
-            aux = aux / 10;
+        String textoOriginal = String.valueOf(codigo);
+        String textoInvertido = "";
+        for (int i = textoOriginal.length() - 1; i >= 0; i--) {
+            textoInvertido = textoInvertido + textoOriginal.charAt(i);
         }
-        return original == invertido;
+        return textoOriginal.equals(textoInvertido);
     }
 
     public int getCodigo() {
