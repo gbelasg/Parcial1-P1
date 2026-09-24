@@ -1,3 +1,5 @@
+package model;
+
 public class Habitacion {
 
     private int numero;
@@ -50,7 +52,7 @@ public class Habitacion {
 
     @Override
     public String toString() {
-        return "Habitacion " + numero + " - " + tipo + " - piso " + piso
+        return "model.Habitacion " + numero + " - " + tipo + " - piso " + piso
                 + " - capacidad " + capacidadMaxima + " - $" + precioNoche + " - " + estado;
     }
 }

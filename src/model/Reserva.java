@@ -1,3 +1,5 @@
+package model;
+
 import java.util.ArrayList;
 
 public class Reserva {
@@ -102,7 +104,7 @@ public class Reserva {
         for (int i = 0; i < listaHabitaciones.size(); i++) {
             habitaciones += listaHabitaciones.get(i).getNumero() + " ";
         }
-        return "Reserva " + codigo + " | fecha " + fechaReserva + " | " + numeroNoches + " noches | "
+        return "model.Reserva " + codigo + " | fecha " + fechaReserva + " | " + numeroNoches + " noches | "
                 + cantidadHuespedes + " huespedes | " + estado + " | " + metodoPago
                 + " | habitaciones: " + habitaciones + "| total $" + valorTotal;
     }

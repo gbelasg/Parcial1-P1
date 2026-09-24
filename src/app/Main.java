@@ -1,3 +1,5 @@
+package app;
+
 import javax.swing.JOptionPane;
 
 public class Main {
@@ -64,7 +66,7 @@ public class Main {
         String telefono = leerTexto("Telefono:");
         String ciudad = leerTexto("Ciudad de procedencia:");
         hotel.registrarHuesped(new Huesped(documento, nombre, edad, telefono, ciudad));
-        JOptionPane.showMessageDialog(null, "Huesped registrado.");
+        JOptionPane.showMessageDialog(null, "model.Huesped registrado.");
     }
 
     public static void registrarHabitacion(Hotel hotel) {
@@ -78,7 +80,7 @@ public class Main {
         String estado = elegirOpcion("Estado de la habitacion:", estados);
 
         if (hotel.registrarHabitacion(new Habitacion(numero, tipo, piso, capacidad, precio, estado))) {
-            JOptionPane.showMessageDialog(null, "Habitacion registrada.");
+            JOptionPane.showMessageDialog(null, "model.Habitacion registrada.");
         } else {
             JOptionPane.showMessageDialog(null, "No hay espacio para mas habitaciones.");
         }
@@ -116,7 +118,7 @@ public class Main {
                 JOptionPane.showMessageDialog(null, "La habitacion no esta disponible (" + habitacion.getEstado() + ").");
             } else {
                 reserva.agregarHabitacion(habitacion);
-                JOptionPane.showMessageDialog(null, "Habitacion agregada.");
+                JOptionPane.showMessageDialog(null, "model.Habitacion agregada.");
             }
             respuesta = JOptionPane.showConfirmDialog(null, "Desea agregar otra habitacion?");
         } while (respuesta == JOptionPane.YES_OPTION);
@@ -124,7 +126,7 @@ public class Main {
         if (reserva.getListaHabitaciones().size() == 0) {
             JOptionPane.showMessageDialog(null, "La reserva no tiene habitaciones. No se registro.");
         } else if (hotel.registrarReserva(reserva)) {
-            JOptionPane.showMessageDialog(null, "Reserva registrada. Valor total: $" + reserva.getValorTotal());
+            JOptionPane.showMessageDialog(null, "model.Reserva registrada. Valor total: $" + reserva.getValorTotal());
         } else {
             JOptionPane.showMessageDialog(null, "No hay espacio para mas reservas.");
         }
@@ -154,7 +156,7 @@ public class Main {
         if (hotel.registrarOcupacion(numero, dia - 1, estado.charAt(0))) {
             JOptionPane.showMessageDialog(null, "Ocupacion registrada.");
         } else {
-            JOptionPane.showMessageDialog(null, "Habitacion o dia no valido.");
+            JOptionPane.showMessageDialog(null, "model.Habitacion o dia no valido.");
         }
     }
 
