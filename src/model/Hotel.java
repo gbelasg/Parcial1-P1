@@ -75,11 +75,12 @@ public class Hotel {
 
     public Habitacion buscarHabitacion(int numero) {
         Habitacion encontrada = null;
-
-        for (int i = 0;i < cantidadHabitaciones && encontrada == null; i++) {
+        int i = 0;
+        while (i < cantidadHabitaciones && encontrada == null ) {
             if (arregloHabitaciones[i].getNumeroHabitacion() == numero) {
                 encontrada = arregloHabitaciones[i];
             }
+            i++;
         }
         return encontrada;
     }
@@ -88,10 +89,12 @@ public class Hotel {
 
     public Huesped buscarHuespedPorTelefono(String telefono) {
         Huesped encontrado = null;
-        for (int i=0; i < listaHuespedes.size() && encontrado == null; i++) {
+        int i=0;
+        while ( i < listaHuespedes.size() && encontrado == null) {
             if (listaHuespedes.get(i).getTelefono().equals(telefono)) {
                 encontrado = listaHuespedes.get(i);
             }
+            i++;
         }
         return encontrado;
     }
@@ -137,7 +140,8 @@ public class Hotel {
             return null;
         }
         Habitacion menor = arregloHabitaciones[0];
-        for (int i = 1; i < cantidadHabitaciones; i++) {
+
+        for ( int i=0; i < cantidadHabitaciones; i++) {
             if (arregloHabitaciones[i].getPrecioNoche() < menor.getPrecioNoche()) {
                 menor = arregloHabitaciones[i];
             }
