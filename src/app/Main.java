@@ -25,40 +25,50 @@ public class Main {
             do {
                 opcion = leerEntero(menu);
 
-                if (opcion == 1) {
-                    registrarHuesped(hotel);
-                } else if (opcion == 2) {
-                    registrarHabitacion(hotel);
-                } else if (opcion == 3) {
-                    registrarReserva(hotel);
-                } else if (opcion == 4) {
-                    String telefono = leerTexto("Telefono del huesped:");
-                    JOptionPane.showMessageDialog(null, hotel.consultarHuesped(telefono));
-                } else if (opcion == 5) {
-                    mostrarDisponibilidad(hotel);
-                } else if (opcion == 6) {
-                    registrarOcupacion(hotel);
-                } else if (opcion == 7) {
-                    String resultado = hotel.mostrarMatrizOcupacion()
-                            + "\nDia con mayor ocupacion: " + hotel.calcularDiaMayorOcupacion()
-                            + "\nDia con menor ocupacion: " + hotel.calcularDiaMenorOcupacion()
-                            + "\nTotal habitaciones ocupadas en la semana: " + hotel.calcularTotalOcupadasSemana();
-                    JOptionPane.showMessageDialog(null, resultado);
-                } else if (opcion == 8) {
-                    JOptionPane.showMessageDialog(null, hotel.consultarReservasEspeciales());
-                } else if (opcion == 9) {
-                    String fecha = leerTexto("Fecha a consultar (dd/mm/aaaa):");
-                    JOptionPane.showMessageDialog(null, "Ingresos del " + fecha + ": $" + hotel.calcularIngresosPorFecha(fecha));
-                } else if (opcion == 0) {
-                    JOptionPane.showMessageDialog(null, "Hasta luego.");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Opcion no valida.");
+                switch (opcion) {
+                    case 1:
+                        registrarHuesped(hotel);
+                        break;
+                    case 2:
+                        registrarHabitacion(hotel);
+                        break;
+                    case 3:
+                        registrarReserva(hotel);
+                        break;
+                    case 4:
+                        String telefono = leerTexto("Telefono del huesped:");
+                        JOptionPane.showMessageDialog(null, hotel.consultarHuesped(telefono));
+                        break;
+                    case 5:
+                        mostrarDisponibilidad(hotel);
+                        break;
+                    case 6:
+                        registrarOcupacion(hotel);
+                        break;
+                    case 7:
+                        String resultado = hotel.mostrarMatrizOcupacion()
+                                + "\nDia con mayor ocupacion: " + hotel.calcularDiaMayorOcupacion()
+                                + "\nDia con menor ocupacion: " + hotel.calcularDiaMenorOcupacion()
+                                + "\nTotal habitaciones ocupadas en la semana: " + hotel.calcularTotalOcupadasSemana();
+                        JOptionPane.showMessageDialog(null, resultado);
+                        break;
+                    case 8:
+                        JOptionPane.showMessageDialog(null, hotel.consultarReservasEspeciales());
+                        break;
+                    case 9:
+                        String fecha = leerTexto("Fecha a consultar (dd/mm/aaaa):");
+                        JOptionPane.showMessageDialog(null, "Ingresos del " + fecha + ": $" + hotel.calcularIngresosPorFecha(fecha));
+                        break;
+                    case 0:
+                        JOptionPane.showMessageDialog(null, "Hasta luego.");
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(null, "Opcion no valida.");
+                        break;
                 }
             } while (opcion != 0);
         }
-
-        //  Opciones del menu
-
+    //  Opciones del menu
         public static void registrarHuesped(Hotel hotel) {
             String documento = leerTexto("Documento:");
             String nombre = leerTexto("Nombre completo:");
@@ -243,16 +253,10 @@ public class Main {
     public static String elegirOpcion(String mensaje, String[] opciones) {
         // El titulo que va a aparecer en la ventana
         String titulo = "Seleccione";
-
-        // La opcion que va a quedar marcada por defecto (la primera del arreglo)
         String opcionPorDefecto = opciones[0];
-
-        // Se muestra la ventana con los botones. El usuario elige uno y aqui
-        // queda guardada la posicion (el indice) del boton que presiono
         int indice = JOptionPane.showOptionDialog(null, mensaje, titulo,
                 JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
                 null, opciones, opcionPorDefecto);
-
         // Si el usuario cierra la ventana sin elegir nada, el indice queda en -1
         // por eso se le sigue preguntando hasta que si elija un boton
         while (indice == -1) {
