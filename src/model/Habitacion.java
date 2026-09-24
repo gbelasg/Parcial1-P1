@@ -9,7 +9,7 @@ public class Habitacion {
     private float precioNoche;
     private String estadoActual;        //Disponible, Reservada, Ocupada, Mantenimiento
 
-    public Habitacion(int numeroHabitacion, String tipo, byte piso, byte capacidadMaxima, float precioNoche, String estado) {
+    public Habitacion(int numeroHabitacion, String tipo, byte piso, byte capacidadMaxima, float precioNoche, String estadoActual) {
         this.numeroHabitacion = numeroHabitacion;
         this.tipo = tipo;
         this.piso = piso;
