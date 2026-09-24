@@ -3,7 +3,6 @@ import model.Habitacion;
 import model.Hotel;
 import model.Huesped;
 import model.Reserva;
-
 import javax.swing.JOptionPane;
 public class Main {
         public static void main(String[] args) {
@@ -76,7 +75,7 @@ public class Main {
             String tipo = elegirOpcion("Tipo de habitacion:", tipos);
             byte piso = (byte) leerEntero("Piso:");
             byte capacidad = (byte) leerEntero("Capacidad maxima:");
-            double precio = leerDouble("Precio por noche:");
+            float precio = leerFloat("Precio por noche:");
             String[] estados = {"Disponible", "Reservada", "Ocupada", "Mantenimiento"};
             String estado = elegirOpcion("Estado de la habitacion:", estados);
 
@@ -116,7 +115,7 @@ public class Main {
                 if (habitacion == null) {
                     JOptionPane.showMessageDialog(null, "La habitacion no existe.");
                 } else if (!habitacion.estaDisponible()) {
-                    JOptionPane.showMessageDialog(null, "La habitacion no esta disponible (" + habitacion.getEstado() + ").");
+                    JOptionPane.showMessageDialog(null, "La habitacion no esta disponible (" + habitacion.getEstadoActual() + ").");
                 } else {
                     reserva.agregarHabitacion(habitacion);
                     JOptionPane.showMessageDialog(null, "Habitacion agregada.");
@@ -142,8 +141,8 @@ public class Main {
             Habitacion mayor = hotel.buscarHabitacionMayorPrecio();
             Habitacion menor = hotel.buscarHabitacionMenorPrecio();
             if (mayor != null) {
-                mensaje += "\n\nMayor precio: habitacion " + mayor.getNumero() + " - $" + mayor.getPrecioNoche()
-                        + "\nMenor precio: habitacion " + menor.getNumero() + " - $" + menor.getPrecioNoche();
+                mensaje += "\n\nMayor precio: habitacion " + mayor.getNumeroHabitacion() + " - $" + mayor.getPrecioNoche()
+                        + "\nMenor precio: habitacion " + menor.getNumeroHabitacion() + " - $" + menor.getPrecioNoche();
             }
             JOptionPane.showMessageDialog(null, mensaje);
         }
@@ -169,11 +168,11 @@ public class Main {
             hotel.registrarHuesped(h1);
             hotel.registrarHuesped(h2);
 
-            hotel.registrarHabitacion(new Habitacion(101, "Individual", (byte) 1, (byte) 1, 120000, "Disponible"));
-            hotel.registrarHabitacion(new Habitacion(102, "Doble", (byte) 1, (byte) 2, 180000, "Disponible"));
-            hotel.registrarHabitacion(new Habitacion(201, "Suite", (byte) 2, (byte) 4, 350000, "Disponible"));
-            hotel.registrarHabitacion(new Habitacion(202, "Doble", (byte) 2, (byte) 2, 190000, "Ocupada"));
-            hotel.registrarHabitacion(new Habitacion(301, "Individual", (byte) 3, (byte) 1, 110000, "Mantenimiento"));
+            hotel.registrarHabitacion(new Habitacion((short) 101, "Individual", (byte) 1, (byte) 1, 120000, "Disponible"));
+            hotel.registrarHabitacion(new Habitacion((short)102, "Doble", (byte) 1, (byte) 2, 180000, "Disponible"));
+            hotel.registrarHabitacion(new Habitacion((short)201, "Suite", (byte) 2, (byte) 4, 350000, "Disponible"));
+            hotel.registrarHabitacion(new Habitacion((short)202, "Doble", (byte) 2, (byte) 2, 190000, "Ocupada"));
+            hotel.registrarHabitacion(new Habitacion((short)301, "Individual", (byte) 3, (byte) 1, 110000, "Mantenimiento"));
 
             Reserva r1 = new Reserva(1221, "22/09/2026", 2, 2, "Confirmada", "Tarjeta", h1);
             r1.agregarHabitacion(hotel.buscarHabitacion(102));
@@ -227,6 +226,19 @@ public class Main {
             }
             return numero;
         }
+    public static float leerFloat(String mensaje) {
+        float numero = 0;
+        boolean valido = false;
+        while (!valido) {
+            try {
+                numero = Float.parseFloat(leerTexto(mensaje));
+                valido = true;
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Debe digitar un numero.");
+            }
+        }
+        return numero;
+    }
         // Muestra las opciones como botones y devuelve la que se presiono
         public static String elegirOpcion(String mensaje, String[] opciones) {
             int indice = JOptionPane.showOptionDialog(null, mensaje, "Seleccione",
