@@ -2,57 +2,89 @@ package model;
 
 public class Habitacion {
 
-    private int numero;
-    private String tipo;          // "Individual", "Doble", "Suite"
+    private short numeroHabitacion;
+    private String tipo;          // Individual, Doble, Suite
     private byte piso;
     private byte capacidadMaxima;
-    private double precioNoche;
-    private String estado;        // "Disponible", "Reservada", "Ocupada", "Mantenimiento"
+    private float precioNoche;
+    private String estadoActual;        //Disponible, Reservada, Ocupada, Mantenimiento
 
-    public Habitacion(int numero, String tipo, byte piso, byte capacidadMaxima, double precioNoche, String estado) {
-        this.numero = numero;
+    public Habitacion(short numeroHabitacion, String tipo, byte piso, byte capacidadMaxima, float precioNoche, String estado) {
+        this.numeroHabitacion = numeroHabitacion;
         this.tipo = tipo;
         this.piso = piso;
         this.capacidadMaxima = capacidadMaxima;
         this.precioNoche = precioNoche;
-        this.estado = estado;
+        this.estadoActual = estadoActual;
     }
 
     public boolean estaDisponible() {
-        return estado.equalsIgnoreCase("Disponible");
+
+        return estadoActual.equalsIgnoreCase("Disponible");
     }
 
     public void cambiarEstado(String nuevoEstado) {
-        this.estado = nuevoEstado;
+
+        this.estadoActual = nuevoEstado;
     }
 
-    public int getNumero() {
-        return numero;
+    public short getNumeroHabitacion() {
+        return numeroHabitacion;
+    }
+
+    public void setNumeroHabitacion(short numeroHabitacion) {
+        this.numeroHabitacion = numeroHabitacion;
     }
 
     public String getTipo() {
         return tipo;
     }
 
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
     public byte getPiso() {
         return piso;
+    }
+
+    public void setPiso(byte piso) {
+        this.piso = piso;
     }
 
     public byte getCapacidadMaxima() {
         return capacidadMaxima;
     }
 
-    public double getPrecioNoche() {
+    public void setCapacidadMaxima(byte capacidadMaxima) {
+        this.capacidadMaxima = capacidadMaxima;
+    }
+
+    public float getPrecioNoche() {
         return precioNoche;
     }
 
-    public String getEstado() {
-        return estado;
+    public void setPrecioNoche(float precioNoche) {
+        this.precioNoche = precioNoche;
+    }
+
+    public String getEstadoActual() {
+        return estadoActual;
+    }
+
+    public void setEstadoActual(String estadoActual) {
+        this.estadoActual = estadoActual;
     }
 
     @Override
     public String toString() {
-        return "model.Habitacion " + numero + " - " + tipo + " - piso " + piso
-                + " - capacidad " + capacidadMaxima + " - $" + precioNoche + " - " + estado;
+        return "Habitacion{" +
+                "numeroHabitacion=" + numeroHabitacion +
+                ", tipo='" + tipo + '\'' +
+                ", piso=" + piso +
+                ", capacidadMaxima=" + capacidadMaxima +
+                ", precioNoche=" + precioNoche +
+                ", estadoActual='" + estadoActual + '\'' +
+                '}';
     }
 }

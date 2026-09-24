@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Hotel {
 
@@ -9,12 +10,12 @@ public class Hotel {
     private String direccion;
     private String telefono;
 
-    // Rol: listaHuespedes
+    // listaHuespedes
     private ArrayList<Huesped> listaHuespedes;
-    // Rol: arregloHabitaciones
+    // arregloHabitaciones
     private Habitacion[] arregloHabitaciones;
     private int cantidadHabitaciones;
-    // Rol: arregloReservas
+    // arregloReservas
     private Reserva[] arregloReservas;
     private int cantidadReservas;
 
@@ -32,8 +33,10 @@ public class Hotel {
         this.cantidadHabitaciones = 0;
         this.arregloReservas = new Reserva[maxReservas];
         this.cantidadReservas = 0;
-        this.matrizOcupacion = new char[maxHabitaciones][diasSemana.length];
-        // Al inicio todas las habitaciones estan disponibles todos los dias
+        this.matrizOcupacion = new char[maxHabitaciones][diasSemana.length]; //filas y columnas de la matriz
+
+
+        // Al empezar todas las habitaciones van a estar disponibles todos los dias
         for (int i = 0; i < matrizOcupacion.length; i++) {
             for (int j = 0; j < matrizOcupacion[i].length; j++) {
                 matrizOcupacion[i][j] = 'D';
@@ -44,9 +47,12 @@ public class Hotel {
     //  Registro 
 
     public void registrarHuesped(Huesped huesped) {
-        listaHuespedes.add(huesped);
+
+        listaHuespedes.add(huesped); //añadir lista de huespedes
     }
 
+
+    // Registro de habitaciones que hay en el hotel
     public boolean registrarHabitacion(Habitacion habitacion) {
         if (cantidadHabitaciones >= arregloHabitaciones.length) {
             return false;
@@ -56,24 +62,24 @@ public class Hotel {
         return true;
     }
 
+    //Registrar las reservas a hacer
     public boolean registrarReserva(Reserva reserva) {
         if (cantidadReservas >= arregloReservas.length) {
             return false;
         }
         arregloReservas[cantidadReservas] = reserva;
         cantidadReservas++;
-        reserva.getHuesped().agregarReserva(reserva);
+        reserva.getHuesped().agregarReserva(reserva); //traer el huesped y a este agrgarle una reserva
         return true;
     }
 
     public Habitacion buscarHabitacion(int numero) {
         Habitacion encontrada = null;
-        int i = 0;
-        while (i < cantidadHabitaciones && encontrada == null) {
-            if (arregloHabitaciones[i].getNumero() == numero) {
+
+        for (int i = 0;i < cantidadHabitaciones && encontrada == null; i++) {
+            if (arregloHabitaciones[i].getNumeroHabitacion() == numero) {
                 encontrada = arregloHabitaciones[i];
             }
-            i++;
         }
         return encontrada;
     }
@@ -82,12 +88,10 @@ public class Hotel {
 
     public Huesped buscarHuespedPorTelefono(String telefono) {
         Huesped encontrado = null;
-        int i = 0;
-        while (i < listaHuespedes.size() && encontrado == null) {
+        for (int i=0; i < listaHuespedes.size() && encontrado == null; i++) {
             if (listaHuespedes.get(i).getTelefono().equals(telefono)) {
                 encontrado = listaHuespedes.get(i);
             }
-            i++;
         }
         return encontrado;
     }
@@ -97,9 +101,9 @@ public class Hotel {
         if (huesped == null) {
             return "No existe un huesped con el telefono " + telefono;
         }
-        return "Nombre: " + huesped.getNombreCompleto() + "\n"
-                + "Documento: " + huesped.getDocumento() + "\n"
-                + "Ciudad: " + huesped.getCiudad() + "\n"
+        return "Nombre: " + huesped.getNombreCompleto() + "\n" //traer el nombre
+                + "Documento: " + huesped.getDocumento() + "\n" //traer documento
+                + "Ciudad: " + huesped.getCiudad() + "\n" //traer ciudad de presedencia
                 + "Reservas realizadas:\n" + huesped.consultarReservas();
     }
 
@@ -108,7 +112,7 @@ public class Hotel {
     public int contarHabitacionesPorEstado(String estado) {
         int contador = 0;
         for (int i = 0; i < cantidadHabitaciones; i++) {
-            if (arregloHabitaciones[i].getEstado().equalsIgnoreCase(estado)) {
+            if (arregloHabitaciones[i].getEstadoActual().equalsIgnoreCase(estado)) { //traer el estado actual
                 contador++;
             }
         }
@@ -148,7 +152,7 @@ public class Hotel {
         boolean registrado = false;
         if (dia >= 0 && dia < diasSemana.length) {
             for (int i = 0; i < cantidadHabitaciones; i++) {
-                if (arregloHabitaciones[i].getNumero() == numeroHabitacion) {
+                if (arregloHabitaciones[i].getNumeroHabitacion() == numeroHabitacion) {
                     matrizOcupacion[i][dia] = estado;
                     registrado = true;
                 }
@@ -198,7 +202,7 @@ public class Hotel {
     public String mostrarMatrizOcupacion() {
         String texto = "Hab.   L   M   X   J   V   S   D\n";
         for (int i = 0; i < cantidadHabitaciones; i++) {
-            texto += arregloHabitaciones[i].getNumero() + "   ";
+            texto += arregloHabitaciones[i].getNumeroHabitacion() + "   ";
             for (int j = 0; j < diasSemana.length; j++) {
                 texto += matrizOcupacion[i][j] + "   ";
             }
@@ -234,33 +238,108 @@ public class Hotel {
         return total;
     }
 
-    //  Getters 
-
     public String getNombre() {
         return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getNit() {
         return nit;
     }
 
+    public void setNit(String nit) {
+        this.nit = nit;
+    }
+
     public String getDireccion() {
         return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
     public String getTelefono() {
         return telefono;
     }
 
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
     public ArrayList<Huesped> getListaHuespedes() {
         return listaHuespedes;
+    }
+
+    public void setListaHuespedes(ArrayList<Huesped> listaHuespedes) {
+        this.listaHuespedes = listaHuespedes;
+    }
+
+    public Habitacion[] getArregloHabitaciones() {
+        return arregloHabitaciones;
+    }
+
+    public void setArregloHabitaciones(Habitacion[] arregloHabitaciones) {
+        this.arregloHabitaciones = arregloHabitaciones;
     }
 
     public int getCantidadHabitaciones() {
         return cantidadHabitaciones;
     }
 
-    public Habitacion[] getArregloHabitaciones() {
-        return arregloHabitaciones;
+    public void setCantidadHabitaciones(int cantidadHabitaciones) {
+        this.cantidadHabitaciones = cantidadHabitaciones;
+    }
+
+    public Reserva[] getArregloReservas() {
+        return arregloReservas;
+    }
+
+    public void setArregloReservas(Reserva[] arregloReservas) {
+        this.arregloReservas = arregloReservas;
+    }
+
+    public int getCantidadReservas() {
+        return cantidadReservas;
+    }
+
+    public void setCantidadReservas(int cantidadReservas) {
+        this.cantidadReservas = cantidadReservas;
+    }
+
+    public char[][] getMatrizOcupacion() {
+        return matrizOcupacion;
+    }
+
+    public void setMatrizOcupacion(char[][] matrizOcupacion) {
+        this.matrizOcupacion = matrizOcupacion;
+    }
+
+    public String[] getDiasSemana() {
+        return diasSemana;
+    }
+
+    public void setDiasSemana(String[] diasSemana) {
+        this.diasSemana = diasSemana;
+    }
+
+    @Override
+    public String toString() {
+        return "Hotel{" +
+                "nombre='" + nombre + '\'' +
+                ", nit='" + nit + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", listaHuespedes=" + listaHuespedes +
+                ", arregloHabitaciones=" + Arrays.toString(arregloHabitaciones) +
+                ", cantidadHabitaciones=" + cantidadHabitaciones +
+                ", arregloReservas=" + Arrays.toString(arregloReservas) +
+                ", cantidadReservas=" + cantidadReservas +
+                ", matrizOcupacion=" + Arrays.toString(matrizOcupacion) +
+                ", diasSemana=" + Arrays.toString(diasSemana) +
+                '}';
     }
 }
