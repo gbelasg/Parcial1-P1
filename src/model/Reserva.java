@@ -98,11 +98,47 @@ public class Reserva {
         return listaHabitaciones;
     }
 
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public void setFechaReserva(String fechaReserva) {
+        this.fechaReserva = fechaReserva;
+    }
+
+    public void setNumeroNoches(int numeroNoches) {
+        this.numeroNoches = numeroNoches;
+    }
+
+    public void setCantidadHuespedes(int cantidadHuespedes) {
+        this.cantidadHuespedes = cantidadHuespedes;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public void setMetodoPago(String metodoPago) {
+        this.metodoPago = metodoPago;
+    }
+
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    public void setHuesped(Huesped huesped) {
+        this.huesped = huesped;
+    }
+
+    public void setListaHabitaciones(ArrayList<Habitacion> listaHabitaciones) {
+        this.listaHabitaciones = listaHabitaciones;
+    }
+
     @Override
     public String toString() {
         String habitaciones = "";
         for (int i = 0; i < listaHabitaciones.size(); i++) {
-            habitaciones += listaHabitaciones.get(i).getNumero() + " ";
+            habitaciones += listaHabitaciones.get(i).getNumeroHabitacion() + " ";
         }
         return "model.Reserva " + codigo + " | fecha " + fechaReserva + " | " + numeroNoches + " noches | "
                 + cantidadHuespedes + " huespedes | " + estado + " | " + metodoPago
