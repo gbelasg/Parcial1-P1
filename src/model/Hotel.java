@@ -3,6 +3,13 @@ package model;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Esta clase representa lo que se hace dentro del hotel StayPlus
+ * @version 1.0
+ * @author Gabriela Sabogal García y Mariana Arias Aristizabal
+ * @fecha : 23/09/26
+ */
+
 public class Hotel {
 
     private String nombre;
@@ -224,7 +231,7 @@ public class Hotel {
                 texto += arregloReservas[i].toString() + "\n";
             }
         }
-        if (texto.isEmpty()) {
+        if (texto==null) {
             return "No hay reservas especiales.";
         }
         return texto;

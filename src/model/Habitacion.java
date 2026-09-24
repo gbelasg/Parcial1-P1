@@ -1,5 +1,12 @@
 package model;
 
+/**
+ * Esta clase representa la habitación de un hotel
+ * @version 1.0
+ * @author Gabriela Sabogal García y Mariana Arias Aristizabal
+ * @fecha : 23/09/26
+ */
+
 public class Habitacion {
 
     private int numeroHabitacion;

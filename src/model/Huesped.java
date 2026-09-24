@@ -2,6 +2,13 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * Esta clase representa un huesped del hotel
+ * @version 1.0
+ * @author Gabriela Sabogal García y Mariana Arias Aristizabal
+ * @fecha : 23/09/26
+ */
+
 public class Huesped {
 
     private String documento;
@@ -23,7 +30,7 @@ public class Huesped {
     }
 
     public void agregarReserva(Reserva reserva) {
-        listaReservas.add(reserva); //añadir reserrva con el .add
+        listaReservas.add(reserva); //añadir reserva con el .add
     }
 
     public String consultarReservas() {
