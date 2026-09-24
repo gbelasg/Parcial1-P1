@@ -239,14 +239,31 @@ public class Main {
         }
         return numero;
     }
-        // Muestra las opciones como botones y devuelve la que se presiono
-        public static String elegirOpcion(String mensaje, String[] opciones) {
-            int indice = JOptionPane.showOptionDialog(null, mensaje, "Seleccione",
-                    JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
-            while (indice == -1) {
-                indice = JOptionPane.showOptionDialog(null, "Debe seleccionar una opcion.\n" + mensaje, "Seleccione",
-                        JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
-            }
-            return opciones[indice];
+    // Este metodo muestra varias opciones como botones para que el usuario elija una
+    public static String elegirOpcion(String mensaje, String[] opciones) {
+        // El titulo que va a aparecer en la ventana
+        String titulo = "Seleccione";
+
+        // La opcion que va a quedar marcada por defecto (la primera del arreglo)
+        String opcionPorDefecto = opciones[0];
+
+        // Se muestra la ventana con los botones. El usuario elige uno y aqui
+        // queda guardada la posicion (el indice) del boton que presiono
+        int indice = JOptionPane.showOptionDialog(null, mensaje, titulo,
+                JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+                null, opciones, opcionPorDefecto);
+
+        // Si el usuario cierra la ventana sin elegir nada, el indice queda en -1
+        // por eso se le sigue preguntando hasta que si elija un boton
+        while (indice == -1) {
+            String mensajeError = "Debe seleccionar una opcion.\n" + mensaje;
+            indice = JOptionPane.showOptionDialog(null, mensajeError, titulo,
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+                    null, opciones, opcionPorDefecto);
         }
+
+        // Se devuelve el texto del boton que corresponde a la posicion elegida
+        String opcionElegida = opciones[indice];
+        return opcionElegida;
+    }
     }
