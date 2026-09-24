@@ -12,9 +12,9 @@ public class Reserva {
     private String metodoPago;        // "Efectivo", "Tarjeta", "Transferencia"
     private double valorTotal;
 
-    // Rol: huesped
+    // huesped
     private Huesped huesped;
-    // Rol: listaHabitaciones
+    // listaHabitaciones
     private ArrayList<Habitacion> listaHabitaciones;
 
     public Reserva(int codigo, String fechaReserva, int numeroNoches, int cantidadHuespedes,
@@ -32,7 +32,7 @@ public class Reserva {
 
     public void agregarHabitacion(Habitacion habitacion) {
         listaHabitaciones.add(habitacion);
-        // Si la reserva esta confirmada, la habitacion deja de estar disponible
+
         if (estado.equalsIgnoreCase("Confirmada")) {
             habitacion.cambiarEstado("Reservada");
         }
@@ -58,7 +58,6 @@ public class Reserva {
         }
         return textoOriginal.equals(textoInvertido);
     }
-
     public int getCodigo() {
         return codigo;
     }

@@ -169,9 +169,7 @@ public class Main {
                 JOptionPane.showMessageDialog(null, "Habitacion o dia no valido.");
             }
         }
-
         //  Datos de prueba
-
         public static void cargarDatosDePrueba(Hotel hotel) {
             Huesped h1 = new Huesped("1094000111", "Ana Maria Lopez", (byte) 28, "3001112233", "Armenia");
             Huesped h2 = new Huesped("1094000222", "Carlos Perez", (byte) 35, "3104445566", "Pereira");
@@ -251,22 +249,17 @@ public class Main {
     }
     // Este metodo muestra varias opciones como botones para que el usuario elija una
     public static String elegirOpcion(String mensaje, String[] opciones) {
-        // El titulo que va a aparecer en la ventana
         String titulo = "Seleccione";
         String opcionPorDefecto = opciones[0];
         int indice = JOptionPane.showOptionDialog(null, mensaje, titulo,
                 JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
                 null, opciones, opcionPorDefecto);
-        // Si el usuario cierra la ventana sin elegir nada, el indice queda en -1
-        // por eso se le sigue preguntando hasta que si elija un boton
         while (indice == -1) {
             String mensajeError = "Debe seleccionar una opcion.\n" + mensaje;
             indice = JOptionPane.showOptionDialog(null, mensajeError, titulo,
                     JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
                     null, opciones, opcionPorDefecto);
         }
-
-        // Se devuelve el texto del boton que corresponde a la posicion elegida
         String opcionElegida = opciones[indice];
         return opcionElegida;
     }
