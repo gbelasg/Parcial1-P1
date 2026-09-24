@@ -2,14 +2,14 @@ package model;
 
 public class Habitacion {
 
-    private short numeroHabitacion;
+    private int numeroHabitacion;
     private String tipo;          // Individual, Doble, Suite
     private byte piso;
     private byte capacidadMaxima;
     private float precioNoche;
     private String estadoActual;        //Disponible, Reservada, Ocupada, Mantenimiento
 
-    public Habitacion(short numeroHabitacion, String tipo, byte piso, byte capacidadMaxima, float precioNoche, String estado) {
+    public Habitacion(int numeroHabitacion, String tipo, byte piso, byte capacidadMaxima, float precioNoche, String estado) {
         this.numeroHabitacion = numeroHabitacion;
         this.tipo = tipo;
         this.piso = piso;
@@ -28,11 +28,11 @@ public class Habitacion {
         this.estadoActual = nuevoEstado;
     }
 
-    public short getNumeroHabitacion() {
+    public int getNumeroHabitacion() {
         return numeroHabitacion;
     }
 
-    public void setNumeroHabitacion(short numeroHabitacion) {
+    public void setNumeroHabitacion(int numeroHabitacion) {
         this.numeroHabitacion = numeroHabitacion;
     }
 
