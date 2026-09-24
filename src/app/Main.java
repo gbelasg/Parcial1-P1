@@ -1,10 +1,15 @@
 package app;
+import model.Habitacion;
+import model.Hotel;
+import model.Huesped;
+import model.Reserva;
+
 import javax.swing.JOptionPane;
 public class Main {
         public static void main(String[] args) {
             Hotel hotel = new Hotel("StayPlus", "900123456-7", "Calle 10 #20-30, Armenia", "6067450000", 20, 50);
             cargarDatosDePrueba(hotel);
-            String menu = "HOTEL " + hotel.getNombre() + "\n\n"
+            String menu = "Hotel " + hotel.getNombre() + "\n\n"
                     + "1. Registrar huesped\n"
                     + "2. Registrar habitacion\n"
                     + "3. Registrar reserva\n"
@@ -86,7 +91,7 @@ public class Main {
             String telefono = leerTexto("Telefono del huesped que reserva:");
             Huesped huesped = hotel.buscarHuespedPorTelefono(telefono);
             if (huesped == null) {
-                JOptionPane.showMessageDialog(null, "El huesped no existe. Registrelo primero.");
+                JOptionPane.showMessageDialog(null, "El huesped no existe");
             } else {
                 crearReserva(hotel, huesped);
             }
